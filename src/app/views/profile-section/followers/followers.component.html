@@ -1,0 +1,44 @@
+@if (!loadingProfile) {
+  <div class="container">
+    <a class="back" routerLink="/@{{ user.username }}">&#8592; {{ user.username }}</a>
+    <h1 class="title">{{ 'profile.followers.title' | transloco }}</h1>
+
+    <field>
+      <input type="text" placeholder="Поиск" formControlName="email" (input)="change($event)" />
+    </field>
+
+    @if (ready && !loading) {
+      <infinite-list
+        class="list"
+        [ready]="!loading"
+        [end]="currentPage === pageCount"
+        (intersectionObserverDetect)="nextPosts()"
+      >
+        @for (item of items; track item.id) {
+          <div class="item">
+            <div class="avatar" routerLink="/@{{ item.follower.username }}">
+              <avatar size="60" [src]="getAvatar(item.follower.avatar)" />
+            </div>
+            <div class="content" routerLink="/@{{ item.follower.username }}">
+              <div class="username">{{ item.follower.username }}</div>
+            </div>
+
+            <button appearance [routerLink]="['/chats', item.follower.id]">{{ 'profile.followers.write' | transloco }}</button>
+          </div>
+        } @empty {
+          <infinite-list-empty>
+            <infinite-list-empty-text>{{ 'profile.followers.empty' | transloco }}</infinite-list-empty-text>
+          </infinite-list-empty>
+        }
+      </infinite-list>
+    } @else {
+      <loader center></loader>
+    }
+  </div>
+} @else {
+  <div class="loader">
+    <loader center></loader>
+  </div>
+}
+
+

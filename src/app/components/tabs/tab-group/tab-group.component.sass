@@ -1,0 +1,39 @@
+.tabs
+  display: flex
+  list-style: none
+  padding: 0
+  margin: 0
+  
+  &__item
+    font-size: 14px
+    line-height: 21px
+    
+    display: flex
+    align-items: center
+    height: 40px
+    color: rgb(100, 116, 139)
+    padding: 0 20px
+    border-radius: 9999px
+    
+    transition: background-color 0.2s ease, color 0.2s ease
+    cursor: pointer
+    
+    &:nth-of-type(n+2)
+      margin-left: 4px
+      
+    &:hover
+      color: rgb(30, 41, 59)
+      
+    &.is-active
+      color: rgb(30, 41, 59)
+      background-color: rgba(51, 65, 85, 0.1)
+      
+.tabs-content
+  list-style: none
+  padding: 0
+  
+  &__item
+    display: none
+
+    &.is-active
+      display: block

@@ -1,0 +1,15 @@
+
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="fields">
+    <field [error]="errors['password']">
+      <label>Новый пароль</label>
+      <input type="password" formControlName="password" (input)="change('password')" />
+    </field>
+    <field [error]="errors['repeatPassword']">
+      <label>Повторите пароль</label>
+      <input type="password" formControlName="repeatPassword" (input)="change('repeatPassword')" />
+    </field>
+  </div>
+
+  <button appearance type="submit" [loading]="loading">Обновить пароль</button>
+</form>

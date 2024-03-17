@@ -1,0 +1,31 @@
+<modal appearance="post">
+  <div class="container">
+    @if (src) {
+      <img src="{{src}}" class="preview">
+      <!-- <video controls src="{{src}}"></video> -->
+    } @else {
+      <div class="drop"
+        (drop)="onDrop($event)"
+        (dragover)="onDragOver($event)"
+      >
+        <input type="file" (change)="onFileSelected($event)">
+        <span>Select files</span>
+      </div>
+    }
+
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="fields">
+        <textarea type="text" formControlName="description" (input)="change('description')"></textarea>
+
+        <!-- <field class="field" [error]="errors['description']">
+          <label>Описание</label>
+          <textarea type="text" formControlName="description" (input)="change('description')"></textarea>
+        </field> -->
+
+
+      </div>
+
+      <button appearance type="submit" [loading]="loading">Сохранить</button>
+    </form>
+  </div>
+</modal>

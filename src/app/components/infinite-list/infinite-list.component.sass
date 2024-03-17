@@ -1,0 +1,26 @@
+:host
+  display: flex
+  min-height: 100%
+
+  &.is-init
+    height: 1px
+
+.content
+  width: 100%
+  max-width: 960px
+
+.list
+  display: flex
+  flex-wrap: wrap
+  gap: 12px
+
+.infinite-loader
+  &_content
+    height: 225px
+    justify-content: center
+
+    &.is-show
+      display: flex
+
+    &.is-hide
+      display: none

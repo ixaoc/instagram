@@ -1,0 +1,37 @@
+<div class="header">
+  <h1 class="header_title">Активация</h1>
+  <p class="description">Код для активации мы отправили на ваш электронный ящик</p>
+</div>
+
+<div>
+  @if (try < 3) {
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="fields">
+        <field [error]="errors['code']">
+          <label>Проверочный код</label>
+          <input type="text" formControlName="code" (input)="change('code')" />
+        </field>
+      </div>
+
+      <div class="buttons">
+        <button appearance type="submit" [loading]="loading">Подтвердить</button>
+      </div>
+    </form>
+  } @else {
+    <div class="msg">Вы ввели неверный код, запросите новый код и попробуйте еще раз</div>
+  }
+
+  <div class="t">
+    @if (refreshRequest < 3) {
+      <span [ngClass]="{ 'refresh-code': true, active: timer === 0 }" (click)="refreshCode()">
+        Запросить новый код
+
+        @if (timer > 0) {
+           через {{ refreshTime }}
+        }
+      </span>
+    } @else {
+      <div class="tech">Если вы не можете получить код, напишите нам на <a class="link" href="mailto:support&#64;site.com">support&#64;site.com</a></div>
+    }
+  </div>
+</div>

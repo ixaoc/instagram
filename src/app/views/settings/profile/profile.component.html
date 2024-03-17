@@ -1,0 +1,23 @@
+@if (ready) {
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="fields">
+      <div class="avatar">
+        <img class="avatar_image" [src]="avatar" />
+        <input type="file" id="file" name="file" (change)="onFileSelected($event)" #fileUpload />
+      </div>
+
+      <div class="id">Ваш ID: {{ profile.id }}</div>
+
+      <field class="field" [error]="errors['username']">
+        <label>Псевдоним</label>
+        <input type="text" formControlName="username" (input)="change('username')" />
+      </field>
+
+
+    </div>
+
+    <button appearance type="submit" [loading]="loading">Сохранить</button>
+  </form>
+} @else {
+  <div>...loading...</div>
+}

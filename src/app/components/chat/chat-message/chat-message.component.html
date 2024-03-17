@@ -1,0 +1,12 @@
+
+  <avatar size="60" [src]="getAvatar(item.avatar)" />
+
+
+<div class="info">
+  @if (item.name) {
+    <div class="name">{{ item.name }}</div>
+  }
+  <div class="text">{{ item.text }}</div>
+</div>
+
+<div [class]="getStatusClass(item.status)"></div>

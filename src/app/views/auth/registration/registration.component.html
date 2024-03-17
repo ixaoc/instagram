@@ -1,0 +1,38 @@
+@switch (step) {
+  @case (2) {
+    <app-auth-activation
+      [email]="getEmail"
+      [password]="getPassword"
+    />
+  }
+  @default {
+    <div class="header">
+      <h1 class="header_title">Регистрация</h1>
+      <a class="link header_link" routerLink="/">Вход</a>
+    </div>
+
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="fields">
+        <field class="field" [error]="errors['email']">
+          <label>Электронная почта</label>
+          <input type="text" formControlName="email" (input)="change('email')" />
+        </field>
+
+        <field class="field" [error]="errors['password']">
+          <label>Пароль</label>
+          <input type="password" formControlName="password" (input)="change('password')" />
+        </field>
+
+        <field class="field" [error]="errors['repeatPassword']">
+          <label>Повторите пароль</label>
+          <input type="password" formControlName="repeatPassword" (input)="change('repeatPassword')" />
+        </field>
+      </div>
+
+      <button appearance type="submit" [loading]="loading">Регистрация</button>
+    </form>
+  }
+}
+
+
+

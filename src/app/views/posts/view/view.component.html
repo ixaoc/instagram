@@ -1,0 +1,97 @@
+<modal appearance="post">
+  @if (!ready || loading) {
+    <div>loading</div>
+  } @else {
+    <div class="view">
+      <div class="left">
+        <img class="media" [src]="getImage(item.media)" />
+
+      </div>
+
+      <div class="right">
+        <div class="header">
+          <div class="header_info">
+            <avatar size="32" [src]="getAvatar(item.user.avatar)" />
+            <a class="profile-link" routerLink="/@{{ item.user.username }}">{{ item.user.username }}</a>
+          </div>
+          <div class="actions">
+            <div class="actions_sign" (click)="openControls = !openControls">...</div>
+
+            @if (openControls) {
+              <ul class="actions-list">
+                <li class="actions-list_item actions-list_item--red" (click)="delete()">
+                  @if (deletion) {
+                    ...
+                  } @else {
+                    Удалить
+                  }
+                </li>
+                <li class="actions-list_item" [routerLink]="['', { outlets: { popup: ['edit-post', item.id] }}]">Редактировать</li>
+                <li class="actions-list_item" (click)="openControls = !openControls">Отмена</li>
+              </ul>
+            }
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="comments" #comments>
+          @if (description) {
+            <div>
+              <div class="comment">
+                <div class="comment_avatar">
+                  <avatar size="32" [src]="getAvatar(item.user.avatar)" />
+                </div>
+
+                <div class="">
+                  <a class="profile-link" [routerLink]="['/@{{ item.user.username }}', { outlets: { popup: null } }]">{{ item.user.username }}</a>
+                  <div>{{ description }}</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          @for (comment of item._comments; track item.id) {
+            <div class="comment">
+              <div class="comment_avatar">
+                <avatar size="32" [src]="getAvatar(comment.user.avatar)" />
+              </div>
+
+              <div class="">
+                <a class="profile-link" [routerLink]="['/@{{ comment.user.username }}', { outlets: { popup: null } }]">{{ comment.user.username }}</a>
+                <div>{{ comment.text }}</div>
+              </div>
+            </div>
+
+          }
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="footer">
+          <div class="footer_info">
+            <div class="controls">
+
+              <div (click)="like(item)"><icon-like class="like" [active]="item.controls.liked"></icon-like>{{ item.controls.liked ? '' : '' }}</div>
+              <div (click)="save(item)"><icon-bookmark class="like" [active]="item.controls.saved"></icon-bookmark>{{ item.controls.saved ? '' : '' }}</div>
+            </div>
+
+            <div class="stats">
+              <div class="stats_like">{{ item.likes }} отметок "Нравится"</div>
+              <a class="stats_publish-date" routerLink="/@{{ item.user.username }}">{{ prepareDate(item.created) }}</a>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="add-comment">
+            <form class="add-comment_form" (submit)="submit($event)">
+              <textarea #text placeholder="Добавить комментарий..." (keyup)="commentKeyUp($event)"></textarea>
+              <button appearance type="submit" [loading]="commentSaving">Опубликовать</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</modal>

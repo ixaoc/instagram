@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="title">Chats</h1>
+
+  @if (items.length) {
+    <div class="chats">
+      @for (item of items; track item.id;) {
+        <div class="chat" [routerLink]="['/chats', item.chat_id]" >
+          <div class="avatar">
+            <avatar size="60" [src]="''"></avatar>
+          </div>
+
+          <div class="detail">
+            <div class="line">
+              <div class="name">
+                {{ item.name }}
+              </div>
+              <div class="date">
+                {{ item.date }}
+              </div>
+            </div>
+            <div class="line">
+              <div class="last-message">
+                {{ item.text }}
+              </div>
+              <div class="badge">
+                4
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+</div>

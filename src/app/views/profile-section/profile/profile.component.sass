@@ -1,0 +1,40 @@
+:host
+  display: block
+  max-width: 1024px
+
+.container
+  min-height: 100vh
+  display: grid
+  grid-template-rows: auto auto auto 1fr
+
+.loader
+  height: 100vh
+
+
+.info
+  display: flex
+  padding: 12px
+  border: 1px solid #cecece
+  border-radius: 120px
+  align-items: center
+  justify-content: space-between
+
+.content
+  display: grid
+  grid-template-rows: 0 1fr
+
+.nav
+  display: flex
+  gap: 40px
+  padding: 24px
+
+  &--center
+    margin: auto
+
+  a
+    color: rgb(107, 114, 128)
+    cursor: pointer
+    text-decoration: none
+
+    &.is-active
+      color: rgb(42, 82, 190)

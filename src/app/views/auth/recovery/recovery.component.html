@@ -1,0 +1,23 @@
+<div class="header">
+  <h1 class="header_title">Восстановление доступа</h1>
+</div>
+
+@switch (step) {
+  @case (2) {
+    <div>Нажмите на ссылку в письме</div>
+  }
+  @case (3) {
+    @if (checking) {
+      <div>loading</div>
+    } @else {
+      <app-auth-recovery-change-form
+        (complete)="submitChangeForm()"
+      />
+    }
+  }
+  @default {
+    <app-auth-recovery-init-form
+      (complete)="submitInitForm()"
+    />
+  }
+}

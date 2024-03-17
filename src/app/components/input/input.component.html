@@ -1,0 +1,16 @@
+<ng-container *ngIf="input?.type === 'text' || input?.type === 'password'">
+  <label *ngIf="!labelComponent && label">
+    {{ label }}
+  </label>
+
+  <ng-content select="label"></ng-content>
+
+  <field-input *ngIf="!inputComponent" [inputRef]="input" [error]="error">
+    <ng-content></ng-content>
+  </field-input>
+
+  <ng-content select="field-input"></ng-content>
+
+  <span class="hint" *ngIf="hint">{{ hint }}</span>
+  <span class="error" *ngIf="error">{{ error }}</span>
+</ng-container>

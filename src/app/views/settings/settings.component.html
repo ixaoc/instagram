@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="title">Settings</h1>
+
+  <app-tab-group
+    [selectedIndex]="activeIndex"
+    (selectedIndexChange)="activeIndex = $event"
+  >
+    @for (tab of tabs; track $index) {
+      <app-tab [label]="tab.label">
+        <ng-container *ngComponentOutlet="tab.content;" />
+      </app-tab>
+    }
+  </app-tab-group>
+</div>

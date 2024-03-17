@@ -1,0 +1,11 @@
+
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="fields">
+    <field [error]="errors['email']">
+      <label>Электронная почта</label>
+      <input type="text" placeholder="" formControlName="email" (input)="change('email')" />
+    </field>
+  </div>
+
+  <button appearance type="submit" [loading]="loading">Далее</button>
+</form>

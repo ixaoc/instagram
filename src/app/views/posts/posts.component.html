@@ -1,0 +1,55 @@
+@if (ready) {
+  <infinite-list
+    class="list"
+    [ready]="ready"
+    [end]="currentPage === pageCount"
+    (intersectionObserverDetect)="nextPosts()"
+  >
+    @for (item of items; track item.id) {
+      <div class="item">
+        <div class="item_header">
+          <avatar size="32" [src]="getAvatar(item.user.avatar)" />
+          <a class="profile-link" routerLink="/@{{ item.user.username }}">{{ item.user.username }}</a>
+          <a class="post-link" [routerLink]="['', { outlets: { popup: ['view-post', item.id] }}]">{{ prepareDate(item.created) }}</a>
+
+          <div class="flex-auto"></div>
+
+          @if (!item.controls.follow) {
+            <div class="follow" (click)="follow(item)">{{ 'feed.follow' | transloco }}</div>
+          } @else {
+            <div class="unfollow" (click)="unfollow(item)">{{ 'feed.unfollow' | transloco }}</div>
+          }
+        </div>
+
+        <div class="item_content">
+          <img class="media" [src]="getImage(item.media)" />
+        </div>
+
+        <div class="item_footer">
+          <div class="controls">
+            <div class="controls_left">
+              <icon-like [active]="item.controls.liked" (click)="like(item)"></icon-like>
+              <icon-comment [routerLink]="['', { outlets: { popup: ['view-post', item.id] }}]"></icon-comment>
+            </div>
+
+            <icon-bookmark [active]="item.controls.saved" (click)="save(item)"></icon-bookmark>
+          </div>
+
+          <div class="like-count">{{ item.likes }} {{ 'feed.likes' | transloco }}</div>
+          <div class="desription">
+            <a class="profile-link" routerLink="/@{{ item.user.username }}">{{ item.user.username }}</a>
+            {{ item.description }}
+          </div>
+          <div class="see-comments" [routerLink]="['', { outlets: { popup: ['view-post', item.id] }}]">{{ 'feed.see-all-comments' | transloco }}({{ item.comments }})</div>
+        </div>
+      </div>
+    } @empty {
+      <infinite-list-empty>
+        <infinite-list-empty-text>{{ 'feed.empty' | transloco }}</infinite-list-empty-text>
+      </infinite-list-empty>
+    }
+  </infinite-list>
+
+} @else {
+  <loader center></loader>
+}

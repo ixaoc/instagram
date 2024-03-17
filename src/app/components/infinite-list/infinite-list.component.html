@@ -1,0 +1,26 @@
+@if (ready) {
+  @if (!empty) {
+    <div class="content">
+      <div class="list">
+        <ng-container *ngTemplateOutlet="content" />
+      </div>
+
+      <div class="infinite-loader">
+        <div class="infinite-loader_trigger" #infiniteLoader></div>
+        <div class="infinite-loader_content" [class]="{'is-hide': end}">
+          <loader center></loader>
+        </div>
+
+      </div>
+    </div>
+  } @else {
+    <ng-container *ngTemplateOutlet="content" />
+  }
+} @else {
+  <loader center></loader>
+}
+
+<ng-template #content>
+  <ng-content select="infinite-list-empty" />
+  <ng-content />
+</ng-template>

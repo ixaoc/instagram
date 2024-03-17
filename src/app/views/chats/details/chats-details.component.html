@@ -1,0 +1,54 @@
+<div class="page">
+  <div class="header">
+    <div class="container">
+      @if (user) {
+        <h1 class="title">{{ user.username }}</h1>
+      }
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="container">
+      @if (ready) {
+        @if (items.length) {
+          <div class="chats">
+            @for (item of items; track item.id) {
+              <component-chat-message [item]="item"></component-chat-message>
+
+              <!-- <div class="chats_item">
+                <div class="avatar"></div>
+
+                <div class="info">
+                  <div class="name">{{ item.sender.username }}</div>
+                  <div class="text">{{ item.text }}</div>
+                </div>
+              </div> -->
+            }
+          </div>
+        }
+        @else {
+          <div>No message</div>
+        }
+      } @else {
+        <div>...loading...</div>
+      }
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <field class="form_field">
+          <input type="text" placeholder="" formControlName="text" >
+        </field>
+
+
+        <button appearance type="submit">send</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+

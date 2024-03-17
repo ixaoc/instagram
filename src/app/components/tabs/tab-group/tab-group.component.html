@@ -1,0 +1,18 @@
+<ul class="tabs">
+  @for (tab of tabs; track i; let i = $index) {
+    <li
+      class="tabs__item" [ngClass]="{'is-active': tab.isActive}"
+      (click)="activate(i)"
+    >
+      {{tab.label}}
+    </li>
+  }
+</ul>
+
+<ul class="tabs-content">
+  @for (tab of tabs; track $index) {
+    <li class="tabs-content__item" [ngClass]="{'is-active': tab.isActive}">
+      <ng-container *ngTemplateOutlet="tab.template"></ng-container>
+    </li>
+  }
+</ul>

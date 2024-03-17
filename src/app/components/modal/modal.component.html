@@ -1,0 +1,5 @@
+<div class="bg" (click)="onClose()"></div>
+
+<div [class]="{content: true, 'content--default': appearance === 'default', 'content--post': appearance === 'post'}" >
+  <ng-content></ng-content>
+</div>

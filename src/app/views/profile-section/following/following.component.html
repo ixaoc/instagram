@@ -1,0 +1,45 @@
+@if (!loadingProfile) {
+  <div class="container">
+    <a class="back" routerLink="/@{{ user.username }}">&#8592; {{ user.username }}</a>
+    <h1 class="title">{{ 'profile.following.title' | transloco }}</h1>
+
+    <field>
+      <input type="text" placeholder="Поиск" formControlName="email" (input)="change($event)" />
+    </field>
+
+    @if (ready && !loading) {
+      <infinite-list
+        class="list"
+        [ready]="!loading"
+        [end]="currentPage === pageCount"
+        (intersectionObserverDetect)="nextPosts()"
+      >
+        @for (item of items; track item.id) {
+          <div class="item">
+            <div class="avatar" routerLink="/@{{ item.user.username }}">
+              <avatar size="60" [src]="getAvatar(item.user.avatar)" />
+            </div>
+            <div class="content" routerLink="/@{{ item.user.username }}">
+              <div class="username">{{ item.user.username }}</div>
+            </div>
+
+            <button appearance [routerLink]="['/chats', item.user.id]">{{ 'profile.following.write' | transloco }}</button>
+            <button appearance [loading]="deleting(item.id)" (click)="unfollow(item.id)">{{ 'profile.following.delete' | transloco }}</button>
+          </div>
+        } @empty {
+          <infinite-list-empty>
+            <infinite-list-empty-text>{{ 'profile.following.empty' | transloco }}</infinite-list-empty-text>
+          </infinite-list-empty>
+        }
+      </infinite-list>
+    } @else {
+      <loader center></loader>
+    }
+  </div>
+} @else {
+  <div class="loader">
+    <loader center></loader>
+  </div>
+}
+
+

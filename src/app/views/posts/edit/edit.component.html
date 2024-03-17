@@ -1,0 +1,17 @@
+<modal appearance="post">
+  @if (!ready || loading) {
+    <div>loading</div>
+  } @else {
+    <div class="container">
+      <img class="preview" [src]="getImage(item.media)">
+
+      <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+        <div class="fields">
+          <textarea type="text" formControlName="description" (input)="change('description')"></textarea>
+        </div>
+
+        <button appearance type="submit" [loading]="updating">Сохранить</button>
+      </form>
+    </div>
+  }
+</modal>

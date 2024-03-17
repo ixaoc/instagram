@@ -1,0 +1,17 @@
+<aside>
+  <nav>
+    <a routerLinkActive="is-active" routerLink="/" [routerLinkActiveOptions]="{exact:true}">Главная</a>
+    <a routerLinkActive="is-active" routerLink="/chats">Чаты</a>
+    <a routerLinkActive="is-active" routerLink="/@{{ user.username }}">Профиль</a>
+    <a routerLinkActive="is-active" routerLink="/settings">Настройки</a>
+    <a (click)="logout()">Выход</a>
+  </nav>
+
+  <a routerLink="/events/add">Create event</a>
+  <a [routerLink]="[{ outlets: { popup: ['add-post'] } }]">Add Post</a>
+</aside>
+
+<div class="content">
+  <router-outlet></router-outlet>
+  <router-outlet name="popup"></router-outlet>
+</div>

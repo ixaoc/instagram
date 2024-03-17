@@ -1,0 +1,82 @@
+:host
+  display: block
+  padding: 10px 0 40px
+
+  &.is-init
+    height: 100vh
+
+  &.is-center
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center
+
+.list
+  display: flex
+  flex-direction: column
+  gap: 48px
+  max-width: 468px
+  margin: auto
+
+.item
+  font-size: 14px
+
+  &_header
+    display: flex
+    align-items: center
+    gap: 12px
+    padding: 12px 0
+
+  &_content
+    width: 100%
+    height: 580px
+
+.flex-auto
+  flex: auto
+
+.like-count
+  font-weight: 600
+
+.see-comments
+  color: #6e6e6e
+  margin-top: 6px
+
+.media
+  display: block
+  width: 100%
+  height: 100%
+  object-fit: cover
+
+.avatar
+  width: 32px
+  height: 32px
+
+  border-radius: 50%
+
+.profile-link
+  color: #000
+  text-decoration: none
+  font-weight: bold
+
+.post-link
+  text-decoration: none
+  color: rgb(115, 115, 115)
+
+.controls
+  display: flex
+  justify-content: space-between
+  gap: 12px
+  padding: 12px 0
+
+  &_left
+    display: flex
+    gap: 12px
+
+.infinite-loader
+  &_content
+    justify-content: center
+    padding: 56px 24px 25px
+    display: none
+
+    &.is-show
+      display: flex

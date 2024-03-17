@@ -1,0 +1,46 @@
+:host
+  display: flex
+  justify-content: space-between
+  gap: 20px
+  padding: 16px 24px
+  border-radius: 21px
+  background: #fff
+  box-shadow: 0 0 14px -2px #00000012
+  margin-right: 65px
+
+  &.is-self
+    margin-right: 0px
+    margin-left: 65px
+    background: rgb(42, 82, 190)
+    color: #fff
+
+.avatar
+  width: 60px
+  height: 60px
+  background: #ccc
+  border-radius: 60px
+
+.name
+  font-size: 18px
+  font-weight: 600
+
+.info
+  flex: auto
+
+
+
+.status
+  width: 6px
+  min-width: 6px
+  height: 6px
+  border-radius: 50%
+  background: #ccc
+  align-self: end
+
+  &--save
+    background: orange
+  &--read
+    background: green
+  &--fail
+    background: red
+

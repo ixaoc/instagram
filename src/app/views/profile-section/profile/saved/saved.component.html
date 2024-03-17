@@ -1,0 +1,13 @@
+<infinite-list
+  [ready]="ready"
+  [end]="currentPage === pageCount"
+  (intersectionObserverDetect)="nextPosts()"
+>
+  @for (item of items; track item.id) {
+    <post-preview [item]="item" mediaPath="{{ mediaUrl }}/"></post-preview>
+  } @empty {
+    <infinite-list-empty>
+      <infinite-list-empty-text>{{ 'profile.posts.empty' | transloco }}</infinite-list-empty-text>
+    </infinite-list-empty>
+  }
+</infinite-list>

@@ -1,0 +1,14 @@
+<a class="item" [routerLink]="['', { outlets: { popup: ['view-post', item.id] }}]">
+  <div class="media" [ngStyle]="getStyle(item.media)"></div>
+
+  <div class="hover">
+    <div class="info">
+      <div class="stats">
+        <icon-like></icon-like> {{ item.likes }}
+      </div>
+      <div class="stats">
+        <icon-comment></icon-comment> {{ item.comments }}
+      </div>
+    </div>
+  </div>
+</a>

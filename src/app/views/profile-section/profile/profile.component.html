@@ -1,0 +1,28 @@
+@if (loading) {
+  <div class="loader">
+    <loader center></loader>
+  </div>
+} @else {
+<div class="container">
+    <h1 class="title">{{ 'profile.title' | transloco }}</h1>
+
+    <div class="info">
+      <avatar [src]="avatar"></avatar>
+
+      <div class="nav info_nav">
+        <a routerLink="/@{{ user.username }}/followers">{{ 'profile.followers.title' | transloco }}</a>
+        <a routerLink="/@{{ user.username }}/following">{{ 'profile.following.title' | transloco }}</a>
+      </div>
+    </div>
+
+    <div class="nav nav--center">
+      <a routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}" routerLink="/@{{ user.username }}">{{ 'profile.posts.title' | transloco }}</a>
+      <a routerLinkActive="is-active" [routerLinkActiveOptions]="{exact:true}" routerLink="/@{{ user.username }}/saved">{{ 'profile.posts.saved' | transloco }}</a>
+    </div>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+}
+
